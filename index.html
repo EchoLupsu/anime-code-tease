@@ -40,12 +40,15 @@
     .btn {
       background-color: #ff4081;
       color: #fff;
-      padding: 1rem 2rem;
+      padding: 0.6rem 1.2rem;
       border: none;
       border-radius: 10px;
-      font-size: 1.2rem;
+      font-size: 1rem;
       cursor: pointer;
       transition: background 0.3s ease;
+      margin-top: 0.5rem;
+      display: inline-block;
+      text-decoration: none;
     }
     .btn:hover {
       background-color: #e73370;
@@ -67,41 +70,22 @@
       overflow: hidden;
       border-radius: 1rem;
       width: 250px;
-      height: 350px;
+      height: auto;
       background: #000;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
     }
     .gallery-item img {
       width: 100%;
-      height: 100%;
+      height: 350px;
       object-fit: cover;
       border-radius: 1rem;
       transition: transform 0.3s ease;
     }
     .gallery-item:hover img {
       transform: scale(1.05);
-    }
-    .caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      padding: 0.5rem;
-      font-size: 1rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .gallery-item:hover .caption {
-      opacity: 1;
-    }
-    .gallery-item a {
-      display: block;
-      width: 100%;
-      height: 100%;
     }
   </style>
 </head>
@@ -112,26 +96,20 @@
 
   <div class="gallery">
     <div class="gallery-item">
-      <a href="https://modelmediaaisa.pse.is/7buxbd" target="_blank">
-        <img src="assets/MD-0345.jpg" alt="MD-0345">
-        <div class="caption">MD-0345｜父喪姐妹的原罪</div>
-      </a>
+      <img src="assets/MD-0345.jpg" alt="MD-0345">
+      <a href="https://modelmediaaisa.pse.is/7buxbd" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
     </div>
     <div class="gallery-item">
-      <a href="https://modelmediaaisa.pse.is/7aq6zs" target="_blank">
-        <img src="assets/MDCM-0015.jpg" alt="MDCM-0015">
-        <div class="caption">MDCM-0015｜哪吒之三龍女大戰真陽魔童</div>
-      </a>
+      <img src="assets/MDCM-0015.jpg" alt="MDCM-0015">
+      <a href="https://modelmediaaisa.pse.is/7aq6zs" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
     </div>
     <div class="gallery-item">
-      <a href="https://modelmediaaisa.pse.is/79h7ac" target="_blank">
-        <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3">
-        <div class="caption">MD-0180-3｜夜勤病棟：病弱母女的受難記</div>
-      </a>
+      <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3">
+      <a href="https://modelmediaaisa.pse.is/79h7ac" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
     </div>
   </div>
 
-  <button class="btn" style="margin-top: 2rem;" onclick="revealSecret()">立即預約老婆</button>
+  <button class="btn" style="margin-top: 2rem; font-size: 1.2rem; padding: 1rem 2rem;" onclick="revealSecret()">立即預約老婆</button>
 
   <div class="footer-note">※ 本企劃純屬虛構，如有雷同純屬幻想。愚人節快樂 🎉</div>
 
