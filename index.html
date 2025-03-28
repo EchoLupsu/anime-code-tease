@@ -109,7 +109,7 @@
   <div id="bg-overlay"></div>
   <h1 id="main-title">番號動畫化企劃 即將公開</h1>
   <div id="main-content" style="opacity: 0; transition: opacity 1s ease 0.5s;">
-    <h2>次元壁，將於 2025/04/01 粉碎。</h2>
+    <h2>次元壁 將於 <span id="countdown-text"></span> 後粉碎</h2>
     <div id="flipdown" class="flipdown"></div>
 
     <div class="gallery">
@@ -135,9 +135,12 @@
   <script src="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.js"></script>
   <script>
     const targetDate = new Date("2025-04-01T00:00:00").getTime();
-    new FlipDown(Math.floor(targetDate / 1000)).start().ifEnded(() => {
-      document.getElementById("flipdown").innerHTML = "次元已突破！番號連結開啟中…";
-    });
+    new FlipDown(Math.floor(targetDate / 1000))
+      .start()
+      .ifEnded(() => {
+        document.getElementById("flipdown").style.display = "none";
+        document.getElementById("countdown-text").innerText = "次元已突破！番號連結開啟中…";
+      });
 
     function revealSecret() {
       const go = confirm("你確定要預約這位老婆嗎？這條路一旦踏上，就回不了頭了。");
