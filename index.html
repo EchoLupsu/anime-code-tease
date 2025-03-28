@@ -4,71 +4,109 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>番號動畫化企劃</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Noto Sans TC', sans-serif;
-      background: url("assets/BG.webp") center center / cover no-repeat fixed;
       color: #fff;
       text-align: center;
+      overflow-x: hidden;
+      background: #000;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url("assets/BG.webp") center center / cover no-repeat fixed;
+      filter: blur(6px);
+      z-index: -1;
     }
 
     .title-wrapper {
-      position: relative;
       width: 100%;
-      max-width: 800px;
-      margin: 2rem auto 0;
+      max-width: 700px;
+      margin: 2rem auto;
+    }
+
+    .title-image-wrapper {
+      position: relative;
+      display: inline-block;
     }
 
     .title-image {
       width: 100%;
       height: auto;
       display: block;
+      border-radius: 8px;
     }
 
     .subtitle-row {
       position: absolute;
-      bottom: 1.5rem;
+      bottom: -1.2rem;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 1rem;
-      font-size: 2rem;
-      text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+      gap: 0.8rem;
+      flex-wrap: nowrap;
       white-space: nowrap;
     }
 
+    .subline {
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+    }
+
     .countdown-box {
-      background: rgba(0, 255, 255, 0.1);
-      border: 2px solid cyan;
+      font-size: 1.8rem;
+      padding: 0.4rem 1.2rem;
+      background: rgba(0, 0, 0, 0.35);
+      border: 2px solid #00ffe1;
       border-radius: 12px;
-      padding: 0.3rem 1.2rem;
-      font-size: 1.5rem;
-      backdrop-filter: blur(4px);
+      color: #ffffff;
+      text-shadow: 0 0 8px #00ffff;
+      box-shadow:
+        0 0 10px #00ffe1,
+        0 0 20px #00ffe1,
+        inset 0 0 10px #00ffe1;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+
+    .countdown-box:hover {
+      transform: scale(1.03);
+      box-shadow:
+        0 0 15px #00ffe1,
+        0 0 30px #00ffe1,
+        inset 0 0 15px #00ffe1;
     }
 
     .card-container {
       display: flex;
       justify-content: center;
       gap: 2rem;
-      margin: 3rem auto;
+      margin: 3rem auto 1rem;
       flex-wrap: wrap;
       max-width: 1200px;
     }
 
     .card {
-      background: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.6);
       border-radius: 1.5rem;
       overflow: hidden;
       width: 260px;
       box-shadow: 0 0 15px rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
-      align-items: center;
+      justify-content: space-between;
     }
 
     .card-img {
@@ -84,8 +122,9 @@
     }
 
     .card-info {
-      padding: 1rem 0 0.3rem;
-      text-align: center;
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.65);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .card-info .meta {
@@ -100,23 +139,19 @@
     }
 
     .card .btn {
-      background: url('assets/4.png') center center / 100% 100% no-repeat;
-      color: white;
+      background-color: #7b2ff7;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
       font-size: 0.9rem;
-      height: 70px;
-      line-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      border: none;
+      margin: 0.8rem auto 1rem;
       text-decoration: none;
-      width: 100%;
-      background-color: transparent;
+      display: inline-block;
+      width: fit-content;
     }
 
     .main-cta {
-      margin: 3rem 0;
+      margin-top: 2rem;
     }
 
     .main-cta .btn {
@@ -130,33 +165,36 @@
     }
 
     @media (max-width: 600px) {
-      .subtitle-row {
-        font-size: 1.3rem;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
+      .subline,
       .countdown-box {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
       }
+
       .card {
         width: 90%;
+      }
+
+      .card-container {
+        gap: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- 主標 + 副標倒數 -->
+  <div class="background"></div>
+
   <div class="title-wrapper">
-    <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
-    <div class="subtitle-row">
-      <span>次元壁將於</span>
-      <span class="countdown-box" id="countdown-text">3天 4時 10分 20秒</span>
-      <span>粉碎</span>
+    <div class="title-image-wrapper">
+      <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
+      <div class="subtitle-row">
+        <span class="subline">次元壁將於</span>
+        <div class="countdown-box" id="countdown-text">3天 0時 0分 0秒</div>
+        <span class="subline">粉碎</span>
+      </div>
     </div>
   </div>
 
-  <!-- 卡片區塊 -->
   <div class="card-container">
     <div class="card">
       <div class="card-img">
@@ -192,22 +230,21 @@
     </div>
   </div>
 
-  <!-- 主 CTA -->
   <div class="main-cta">
     <a href="https://modelmediaaisa.pse.is/6yam6v" target="_blank" class="btn">❤️ 立即預約老婆 ❤️</a>
   </div>
 
-  <!-- 倒數計時 JS -->
   <script>
-    const countdownEl = document.getElementById("countdown-text");
     const targetDate = new Date("2025-04-01T00:00:00").getTime();
+    const countdownBox = document.getElementById("countdown-text");
 
-    const updateCountdown = () => {
+    const countdown = setInterval(() => {
       const now = new Date().getTime();
       const distance = targetDate - now;
 
       if (distance < 0) {
-        countdownEl.innerText = "次元已突破！番號連結開啟中…";
+        clearInterval(countdown);
+        countdownBox.textContent = "次元已突破！番號連結開啟中…";
         return;
       }
 
@@ -216,11 +253,8 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdownEl.innerText = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
-    };
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+      countdownBox.textContent = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
+    }, 1000);
   </script>
 </body>
 </html>
