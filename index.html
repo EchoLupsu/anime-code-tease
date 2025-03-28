@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>番號動畫化企劃</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=ZCOOL+KuaiLe&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.css">
   <style>
     body {
@@ -19,7 +19,6 @@
 
     .title-wrapper {
       position: relative;
-      top: -100px;
       width: 100%;
       max-width: 700px;
       margin: 2rem auto;
@@ -53,8 +52,70 @@
       zoom: 1.5;
     }
 
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem auto 1rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      width: 260px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    }
+
+    .card-img {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      overflow: hidden;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+      color: #fff;
+      box-sizing: border-box;
+    }
+
+    .card-overlay .meta {
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+
+    .card-overlay .title {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-top: 0.3rem;
+    }
+
+    .card .btn {
+      background-color: #7b2ff7;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin: 0.8rem 0 1rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+
     .main-cta {
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
 
     .main-cta .btn {
@@ -67,6 +128,11 @@
       box-shadow: 0 0 20px #ff408180;
     }
 
+    @font-face {
+      font-family: 'FengYunFan';
+      src: url('assets/ChaoZiSheFengYunFan-2.ttf') format('truetype');
+    }
+
     @media (max-width: 600px) {
       .title-overlay .subline {
         font-size: 1.1rem;
@@ -76,13 +142,19 @@
         zoom: 1.1;
       }
 
-      .title-wrapper {
-        top: 0;
+      .card {
+        width: 90%;
+      }
+
+      .card-container {
+        gap: 1rem;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- 主標 + 副標倒數 -->
   <div class="title-wrapper">
     <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
     <div class="title-overlay">
@@ -91,6 +163,43 @@
     </div>
   </div>
 
+  <!-- 卡片區塊 -->
+  <div class="card-container">
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/MD-0345.jpg" alt="MD-0345" />
+        <div class="card-overlay">
+          <div class="meta">MD-0345｜主演：露露、沈娜娜</div>
+          <div class="title">父喪姐妹的原罪</div>
+        </div>
+      </div>
+      <a href="https://modelmediaaisa.pse.is/7buxbd" target="_blank" class="btn">點我解鎖番號</a>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/MDCM-0015.jpg" alt="MDCM-0015" />
+        <div class="card-overlay">
+          <div class="meta">MDCM-0015｜經典改編</div>
+          <div class="title">哪吒之三龍女大戰真陽魔童</div>
+        </div>
+      </div>
+      <a href="https://modelmediaaisa.pse.is/7aq6zs" target="_blank" class="btn">點我解鎖番號</a>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3" />
+        <div class="card-overlay">
+          <div class="meta">MD-0180-3｜病弱母女受難記</div>
+          <div class="title">夜勤病棟</div>
+        </div>
+      </div>
+      <a href="https://modelmediaaisa.pse.is/79h7ac" target="_blank" class="btn">點我解鎖番號</a>
+    </div>
+  </div>
+
+  <!-- 主 CTA -->
   <div class="main-cta">
     <a href="https://modelmediaaisa.pse.is/6yam6v" target="_blank" class="btn">❤️ 立即預約老婆 ❤️</a>
   </div>
