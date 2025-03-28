@@ -18,8 +18,9 @@
     }
 
     .title-image {
-      max-width: 90%;
-      width: 500px;
+      width: 80%;
+      max-width: 700px;
+      height: auto;
       margin-top: 2rem;
       margin-bottom: 1rem;
       display: block;
@@ -101,6 +102,21 @@
     @font-face {
       font-family: 'FengYunFan';
       src: url('assets/ChaoZiSheFengYunFan-2.ttf') format('truetype');
+    }
+
+    @media (max-width: 600px) {
+      .subline {
+        font-size: 1.2rem;
+      }
+      .flipdown {
+        zoom: 1.1;
+      }
+      .card {
+        width: 90%;
+      }
+      .card-container {
+        gap: 1rem;
+      }
     }
   </style>
 </head>
