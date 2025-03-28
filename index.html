@@ -87,9 +87,20 @@
     .gallery-item:hover img {
       transform: scale(1.05);
     }
-  </style>
+  #bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: -1;
+    }
+</style>
 </head>
 <body>
+  <div id="bg-overlay"></div>
   <h1>番號動畫化企劃 即將公開</h1>
   <h2>次元壁，將於 2025/04/01 粉碎。</h2>
   <div id="countdown">00:00:00:00</div>
