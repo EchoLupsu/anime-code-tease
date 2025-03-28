@@ -33,6 +33,11 @@
       margin: 2rem auto;
     }
 
+    .title-image-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
     .title-image {
       width: 100%;
       height: auto;
@@ -41,11 +46,14 @@
     }
 
     .subtitle-row {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 1rem;
-      margin-top: 2rem;
       flex-wrap: wrap;
     }
 
@@ -177,11 +185,13 @@
   <div class="background"></div>
 
   <div class="title-wrapper">
-    <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
-    <div class="subtitle-row">
-      <span class="subline">次元壁將於</span>
-      <div class="countdown-box" id="countdown-text">3天 0時 0分 0秒</div>
-      <span class="subline">粉碎</span>
+    <div class="title-image-wrapper">
+      <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
+      <div class="subtitle-row">
+        <span class="subline">次元壁將於</span>
+        <div class="countdown-box" id="countdown-text">3天 0時 0分 0秒</div>
+        <span class="subline">粉碎</span>
+      </div>
     </div>
   </div>
 
