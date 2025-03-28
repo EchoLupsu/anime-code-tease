@@ -16,7 +16,6 @@
       background: #000;
     }
 
-    /* 模糊背景圖 */
     .background {
       position: fixed;
       top: 0;
@@ -59,12 +58,26 @@
 
     .countdown-box {
       font-size: 2rem;
-      padding: 0.3rem 1rem;
-      background: rgba(0, 0, 0, 0.75);
-      border-radius: 10px;
-      color: white;
-      font-weight: bold;
-      text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+      padding: 0.5rem 1.5rem;
+      background: rgba(0, 0, 0, 0.35);
+      border: 2px solid #00ffe1;
+      border-radius: 12px;
+      color: #ffffff;
+      text-shadow: 0 0 8px #00ffff;
+      box-shadow:
+        0 0 10px #00ffe1,
+        0 0 20px #00ffe1,
+        inset 0 0 10px #00ffe1;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+
+    .countdown-box:hover {
+      transform: scale(1.03);
+      box-shadow:
+        0 0 15px #00ffe1,
+        0 0 30px #00ffe1,
+        inset 0 0 15px #00ffe1;
     }
 
     .card-container {
@@ -163,7 +176,6 @@
 
   <div class="background"></div>
 
-  <!-- 主標 + 副標倒數 -->
   <div class="title-wrapper">
     <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
     <div class="subtitle-row">
@@ -173,7 +185,6 @@
     </div>
   </div>
 
-  <!-- 卡片區塊 -->
   <div class="card-container">
     <div class="card">
       <div class="card-img">
@@ -209,12 +220,10 @@
     </div>
   </div>
 
-  <!-- 主 CTA -->
   <div class="main-cta">
     <a href="https://modelmediaaisa.pse.is/6yam6v" target="_blank" class="btn">❤️ 立即預約老婆 ❤️</a>
   </div>
 
-  <!-- Countdown Script -->
   <script>
     const targetDate = new Date("2025-04-01T00:00:00").getTime();
     const countdownBox = document.getElementById("countdown-text");
