@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>番號動畫化企劃</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=ZCOOL+KuaiLe&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -14,26 +13,19 @@
       color: #fff;
       text-align: center;
       overflow-x: hidden;
-      position: relative;
-      z-index: 0;
+      background: #000;
     }
 
-    /* 背景模糊專用容器 */
-    .background-blur {
+    /* 背景圖 + 模糊效果 */
+    .background {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       background: url("assets/BG.webp") center center / cover no-repeat fixed;
-      backdrop-filter: blur(6px);
-      z-index: 0;
-    }
-
-    /* 其餘內容全部置於模糊背景上方 */
-    body > *:not(.background-blur) {
-      position: relative;
-      z-index: 1;
+      filter: blur(6px);
+      z-index: -1;
     }
 
     .title-wrapper {
@@ -49,24 +41,12 @@
       border-radius: 8px;
     }
 
-    .title-overlay-inline {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 1.5rem;
-    }
-
-    .subline {
+    .subtitle {
       font-size: 1.6rem;
-      font-weight: 600;
+      font-weight: bold;
+      margin-top: 1.5rem;
       color: white;
       text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
-    }
-
-    .flipdown-inline {
-      zoom: 1;
     }
 
     .card-container {
@@ -151,18 +131,12 @@
     }
 
     @media (max-width: 600px) {
-      .subline {
-        font-size: 1.3rem;
+      .subtitle {
+        font-size: 1.2rem;
       }
-
-      .flipdown-inline {
-        zoom: 0.9;
-      }
-
       .card {
         width: 90%;
       }
-
       .card-container {
         gap: 1rem;
       }
@@ -171,17 +145,12 @@
 </head>
 <body>
 
-  <!-- 背景模糊 -->
-  <div class="background-blur"></div>
+  <div class="background"></div>
 
   <!-- 主標 + 副標倒數 -->
   <div class="title-wrapper">
     <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
-    <div class="title-overlay-inline">
-      <span class="subline">次元壁將於</span>
-      <div id="flipdown" class="flipdown flipdown-inline"></div>
-      <span class="subline">粉碎</span>
-    </div>
+    <div class="subtitle" id="countdown-subtitle">次元壁將於 ... 粉碎</div>
   </div>
 
   <!-- 卡片區塊 -->
@@ -225,16 +194,27 @@
     <a href="https://modelmediaaisa.pse.is/6yam6v" target="_blank" class="btn">❤️ 立即預約老婆 ❤️</a>
   </div>
 
-  <!-- Flipdown Script -->
-  <script src="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.js"></script>
   <script>
+    const subtitle = document.getElementById("countdown-subtitle");
     const targetDate = new Date("2025-04-01T00:00:00").getTime();
-    new FlipDown(Math.floor(targetDate / 1000), 'flipdown')
-      .start()
-      .ifEnded(() => {
-        document.querySelector(".title-overlay-inline").innerHTML =
-          "<span class='subline'>次元已突破！番號連結開啟中…</span>";
-      });
+
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(countdown);
+        subtitle.textContent = "次元已突破！番號連結開啟中…";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      subtitle.textContent = `次元壁將於 ${days}天 ${hours}時 ${minutes}分 ${seconds}秒 粉碎`;
+    }, 1000);
   </script>
 </body>
 </html>
