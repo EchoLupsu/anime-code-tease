@@ -16,7 +16,7 @@
       background: #000;
     }
 
-    /* 背景圖 + 模糊效果 */
+    /* 模糊背景圖 */
     .background {
       position: fixed;
       top: 0;
@@ -143,11 +143,6 @@
       box-shadow: 0 0 20px #ff408180;
     }
 
-    @font-face {
-      font-family: 'FengYunFan';
-      src: url('assets/ChaoZiSheFengYunFan-2.ttf') format('truetype');
-    }
-
     @media (max-width: 600px) {
       .subline,
       .countdown-box {
@@ -210,4 +205,37 @@
           <div class="title">夜勤病棟</div>
         </div>
       </div>
-      <a href="https://modelmediaaisa
+      <a href="https://modelmediaaisa.pse.is/79h7ac" target="_blank" class="btn">點我解鎖番號</a>
+    </div>
+  </div>
+
+  <!-- 主 CTA -->
+  <div class="main-cta">
+    <a href="https://modelmediaaisa.pse.is/6yam6v" target="_blank" class="btn">❤️ 立即預約老婆 ❤️</a>
+  </div>
+
+  <!-- Countdown Script -->
+  <script>
+    const targetDate = new Date("2025-04-01T00:00:00").getTime();
+    const countdownBox = document.getElementById("countdown-text");
+
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(countdown);
+        countdownBox.textContent = "次元已突破！番號連結開啟中…";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownBox.textContent = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
+    }, 1000);
+  </script>
+</body>
+</html>
