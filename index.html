@@ -1,60 +1,143 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>$1
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>番號動畫化製作委員會 | OFFICIAL</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=ZCOOL+KuaiLe&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: url("assets/BG.webp") center center / cover no-repeat fixed;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding-top: 3rem;
+    }
+    h1 {
+      font-family: 'FengYunFan', cursive;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      opacity: 0;
+      animation: fadeInTyping 3s steps(30, end) forwards;
+      animation-delay: 0.5s;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: #bbbbbb;
+    }
+    .flipdown {
+      margin: 2rem auto;
+      zoom: 1.2;
+    }
+    .btn {
+      background-color: #ff4081;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 0.5rem;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background-color: #e73370;
+    }
+    .footer-note {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    .gallery {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      width: 250px;
+      height: auto;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    @font-face {
+      font-family: 'FengYunFan';
+      src: url('assets/ChaoZiSheFengYunFan-2.ttf') format('truetype');
+    }
+    @keyframes fadeInTyping {
+      0% { width: 0; opacity: 0; }
+      50% { opacity: 1; }
+      100% { width: 100%; opacity: 1; }
+    }
+  </style>
 </head>
 <body>
-  
   <div id="bg-overlay"></div>
   <h1 id="main-title">番號動畫化企劃 即將公開</h1>
   <div id="main-content" style="opacity: 0; transition: opacity 1s ease 0.5s;">
-  <h2>次元壁，將於 2025/04/01 粉碎。</h2>
-  <div id="flipdown" class="flipdown"></div>
+    <h2>次元壁，將於 2025/04/01 粉碎。</h2>
+    <div id="flipdown" class="flipdown"></div>
 
-  <div class="gallery">
-    <div class="gallery-item">
-      <img src="assets/MD-0345.jpg" alt="MD-0345">
-      <a href="https://modelmediaaisa.pse.is/7buxbd" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="assets/MD-0345.jpg" alt="MD-0345">
+        <a href="https://modelmediaaisa.pse.is/7buxbd" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/MDCM-0015.jpg" alt="MDCM-0015">
+        <a href="https://modelmediaaisa.pse.is/7aq6zs" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3">
+        <a href="https://modelmediaaisa.pse.is/79h7ac" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
+      </div>
     </div>
-    <div class="gallery-item">
-      <img src="assets/MDCM-0015.jpg" alt="MDCM-0015">
-      <a href="https://modelmediaaisa.pse.is/7aq6zs" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
-    </div>
-    <div class="gallery-item">
-      <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3">
-      <a href="https://modelmediaaisa.pse.is/79h7ac" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
-    </div>
+
+    <button class="btn" style="margin-top: 2rem; font-size: 1.2rem; padding: 1rem 2rem;" onclick="revealSecret()">立即預約老婆</button>
   </div>
 
-  <button class="btn" style="margin-top: 2rem; font-size: 1.2rem; padding: 1rem 2rem;" onclick="revealSecret()">立即預約老婆</button>
-
-  </div>
   <div class="footer-note">※ 本企劃純屬虛構，如有雷同純屬幻想。愚人節快樂 🎉</div>
 
+  <script src="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.js"></script>
   <script>
     const targetDate = new Date("2025-04-01T00:00:00").getTime();
-    const flipdown = new FlipDown(Math.floor(targetDate / 1000))
-  .start()
-  .ifEnded(() => {
-    document.getElementById("flipdown").innerHTML = "次元已突破！番號連結開啟中…";
-  });
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        clearInterval(interval);
-        countdown.innerHTML = "次元已突破！番號連結開啟中…";
-        
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdown.innerHTML = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
-    }, 1000);
+    new FlipDown(Math.floor(targetDate / 1000)).start().ifEnded(() => {
+      document.getElementById("flipdown").innerHTML = "次元已突破！番號連結開啟中…";
+    });
 
     function revealSecret() {
       const go = confirm("你確定要預約這位老婆嗎？這條路一旦踏上，就回不了頭了。");
@@ -62,9 +145,9 @@
         window.open("https://modelmediaaisa.pse.is/6yam6v", "_blank");
       }
     }
-      const mainTitle = document.getElementById("main-title");
-    const mainContent = document.getElementById("main-content");
 
+    const mainTitle = document.getElementById("main-title");
+    const mainContent = document.getElementById("main-content");
     mainTitle.addEventListener("animationend", () => {
       mainContent.style.opacity = 1;
     });
