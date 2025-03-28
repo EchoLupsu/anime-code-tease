@@ -11,7 +11,8 @@
       margin: 0;
       padding: 0;
     }
-    body {
+    background: url("assets/BG.webp") center center / cover no-repeat fixed;
+body {
       font-family: 'Noto Sans TC', sans-serif;
       
       color: #fff;
@@ -92,15 +93,7 @@
     .gallery-item:hover img {
       transform: scale(1.05);
     }
-  #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -2;
-    }
+  
 
     #bg-overlay {
       position: fixed;
@@ -131,9 +124,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
 </head>
 <body>
-  <video autoplay muted loop playsinline id="bg-video">
-    <source src="assets/bg.mov" type="video/mp4">
-  </video>
+  
   <div id="bg-overlay"></div>
   <div id="bg-overlay"></div>
   <h1>番號動畫化企劃 即將公開</h1>
