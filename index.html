@@ -31,22 +31,25 @@
       border-radius: 8px;
     }
 
-    .title-overlay {
+    .title-overlay-inline {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 0.5rem;
-      margin-top: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
     }
 
     .subline {
-      font-size: 2rem;
-      font-weight: 600;
-      line-height: 1.2;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: white;
+      -webkit-text-stroke: 2px black;
+      text-shadow: 0 0 5px rgba(0,0,0,0.6);
     }
 
-    .flipdown {
-      zoom: 1.5;
+    .flipdown-inline {
+      zoom: 1.2;
     }
 
     .card-container {
@@ -135,8 +138,8 @@
         font-size: 1.3rem;
       }
 
-      .flipdown {
-        zoom: 1.1;
+      .flipdown-inline {
+        zoom: 1.05;
       }
 
       .card {
@@ -151,13 +154,13 @@
 </head>
 <body>
 
-  <!-- 主標 + 倒數副標 -->
+  <!-- 主標 + 副標倒數 -->
   <div class="title-wrapper">
     <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
-    <div class="title-overlay">
-      <div class="subline">次元壁將於</div>
-      <div id="flipdown" class="flipdown"></div>
-      <div class="subline">粉碎</div>
+    <div class="title-overlay-inline">
+      <span class="subline">次元壁將於</span>
+      <div id="flipdown" class="flipdown flipdown-inline"></div>
+      <span class="subline">粉碎</span>
     </div>
   </div>
 
@@ -206,10 +209,11 @@
   <script src="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.js"></script>
   <script>
     const targetDate = new Date("2025-04-01T00:00:00").getTime();
-    new FlipDown(Math.floor(targetDate / 1000))
+    new FlipDown(Math.floor(targetDate / 1000), 'flipdown')
       .start()
       .ifEnded(() => {
-        document.querySelector(".title-overlay").innerHTML = "<div class='subline'>次元已突破！番號連結開啟中…</div>";
+        document.querySelector(".title-overlay-inline").innerHTML =
+          "<span class='subline'>次元已突破！番號連結開啟中…</span>";
       });
   </script>
 </body>
