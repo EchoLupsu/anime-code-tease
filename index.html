@@ -143,17 +143,14 @@
       80% { transform: translateX(1px); text-shadow: -1px 0 red, 1px 0 cyan; }
       100% { transform: none; text-shadow: 0 0 5px #00f7ff; }
     }
-@keyframes flashRed {
-  0% { background-color: rgba(255, 0, 0, 0.1); }
+
   25% { background-color: rgba(255, 0, 0, 0.4); }
   50% { background-color: rgba(255, 0, 0, 0.6); }
   75% { background-color: rgba(255, 0, 0, 0.4); }
   100% { background-color: rgba(255, 0, 0, 0.1); }
 }
 
-body.red-flash {
-  animation: flashRed 1s ease-in-out;
-}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
 </head>
@@ -196,7 +193,7 @@ body.red-flash {
       if (distance < 0) {
         clearInterval(interval);
         countdown.innerHTML = "次元已突破！番號連結開啟中…";
-        document.body.classList.add("red-flash");
+        
         return;
       }
 
