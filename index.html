@@ -1,138 +1,150 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>番號動畫化製作委員會 | OFFICIAL</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>番號動畫化企劃</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=ZCOOL+KuaiLe&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.css">
   <style>
-    * {
-      box-sizing: border-box;
+    body {
       margin: 0;
       padding: 0;
-    }
-    body {
       font-family: 'Noto Sans TC', sans-serif;
       background: url("assets/BG.webp") center center / cover no-repeat fixed;
       color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
       text-align: center;
-      padding-top: 3rem;
+      overflow-x: hidden;
     }
+
     h1 {
       font-family: 'FengYunFan', cursive;
       font-size: 3.5rem;
-      margin-bottom: 1rem;
-      white-space: nowrap;
+      margin: 1rem 0 0.5rem;
+      animation: fadeInTyping 3s steps(30, end) forwards;
       overflow: hidden;
+      white-space: nowrap;
       width: 0;
       opacity: 0;
-      animation: fadeInTyping 3s steps(30, end) forwards;
       animation-delay: 0.5s;
     }
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      color: #bbbbbb;
-    }
-    .flipdown {
-      margin: 2rem auto;
-      transform: scale(1.6);
-    }
-    .btn {
-      background-color: #ff4081;
-      color: #fff;
-      padding: 0.6rem 1.2rem;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      margin-top: 0.5rem;
-      display: inline-block;
-      text-decoration: none;
-    }
-    .btn:hover {
-      background-color: #e73370;
-    }
-    .footer-note {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #888;
-    }
-    .gallery {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 3rem;
-    }
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 1rem;
-      width: 250px;
-      height: auto;
-      background: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 350px;
-      object-fit: cover;
-      border-radius: 1rem;
-      transition: transform 0.3s ease;
-    }
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-    @font-face {
-      font-family: 'FengYunFan';
-      src: url('assets/ChaoZiSheFengYunFan-2.ttf') format('truetype');
-    }
+
     @keyframes fadeInTyping {
       0% { width: 0; opacity: 0; }
       50% { opacity: 1; }
       100% { width: 100%; opacity: 1; }
     }
+
+    .subline {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .flipdown {
+      margin: 1rem auto;
+      zoom: 1.5;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem auto 1rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      width: 260px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    }
+
+    .card img {
+      width: 100%;
+      border-bottom: 2px solid #ff4081;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    .card .title {
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 0.5rem 0 0;
+    }
+
+    .card .subtitle {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-bottom: 0.5rem;
+    }
+
+    .card .btn {
+      background-color: #7b2ff7;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin: 0.8rem 0 1rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .main-cta {
+      margin-top: 2rem;
+    }
+
+    .main-cta .btn {
+      background: linear-gradient(45deg, #ff4081, #ff0055);
+      color: white;
+      font-size: 1.4rem;
+      padding: 1rem 2.5rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      box-shadow: 0 0 20px #ff408180;
+    }
+
+    @font-face {
+      font-family: 'FengYunFan';
+      src: url('assets/ChaoZiSheFengYunFan-2.ttf') format('truetype');
+    }
   </style>
 </head>
 <body>
-  <div id="bg-overlay"></div>
-  <h1 id="main-title">番號動畫化企劃 即將公開</h1>
+  <h1 id="main-title">番號動畫化企劃 即將公開!!!</h1>
   <div id="main-content" style="opacity: 0; transition: opacity 1s ease 0.5s;">
-    <h2 style="font-size: 3.5rem; font-family: 'FengYunFan', cursive;">
-      次元壁 將於 <span id="countdown-text"></span> 後粉碎
-    </h2>
+    <div class="subline">
+      次元壁將於 <span id="countdown-text"></span> 粉碎
+    </div>
     <div id="flipdown" class="flipdown"></div>
 
-    <div class="gallery">
-      <div class="gallery-item">
-        <img src="assets/MD-0345.jpg" alt="MD-0345">
-        <a href="https://modelmediaaisa.pse.is/7buxbd" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
+    <div class="card-container">
+      <div class="card">
+        <img src="assets/MD-0345.jpg" alt="MD-0345" />
+        <div class="title">父喪姐妹的原罪</div>
+        <div class="subtitle">MD-0345｜露露、沈娜娜</div>
+        <a href="https://modelmediaaisa.pse.is/7buxbd" target="_blank" class="btn">點我解鎖番號</a>
       </div>
-      <div class="gallery-item">
-        <img src="assets/MDCM-0015.jpg" alt="MDCM-0015">
-        <a href="https://modelmediaaisa.pse.is/7aq6zs" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
+      <div class="card">
+        <img src="assets/MDCM-0015.jpg" alt="MDCM-0015" />
+        <div class="title">哪吒之三龍女大戰真陽魔童</div>
+        <div class="subtitle">MDCM-0015｜經典改編</div>
+        <a href="https://modelmediaaisa.pse.is/7aq6zs" target="_blank" class="btn">點我解鎖番號</a>
       </div>
-      <div class="gallery-item">
-        <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3">
-        <a href="https://modelmediaaisa.pse.is/79h7ac" class="btn" target="_blank">點我解鎖傳說番號 🔓</a>
+      <div class="card">
+        <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3" />
+        <div class="title">夜勤病棟</div>
+        <div class="subtitle">MD-0180-3｜病弱母女受難記</div>
+        <a href="https://modelmediaaisa.pse.is/79h7ac" target="_blank" class="btn">點我解鎖番號</a>
       </div>
     </div>
 
-    <button class="btn" style="margin-top: 2rem; font-size: 1.2rem; padding: 1rem 2rem;" onclick="revealSecret()">立即預約老婆</button>
+    <div class="main-cta">
+      <a href="https://modelmediaaisa.pse.is/6yam6v" target="_blank" class="btn">❤️ 立即預約老婆 ❤️</a>
+    </div>
   </div>
-
-  <div class="footer-note">※ 本企劃純屬虛構，如有雷同純屬幻想。愚人節快樂 🎉</div>
 
   <script src="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.js"></script>
   <script>
@@ -143,13 +155,6 @@
         document.getElementById("flipdown").style.display = "none";
         document.getElementById("countdown-text").innerText = "次元已突破！番號連結開啟中…";
       });
-
-    function revealSecret() {
-      const go = confirm("你確定要預約這位老婆嗎？這條路一旦踏上，就回不了頭了。");
-      if (go) {
-        window.open("https://modelmediaaisa.pse.is/6yam6v", "_blank");
-      }
-    }
 
     const mainTitle = document.getElementById("main-title");
     const mainContent = document.getElementById("main-content");
