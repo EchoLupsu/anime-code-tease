@@ -17,22 +17,14 @@
       overflow-x: hidden;
     }
 
-    h1 {
-      font-family: 'FengYunFan', cursive;
-      font-size: 3.5rem;
-      margin: 1rem 0 0.5rem;
-      animation: fadeInTyping 3s steps(30, end) forwards;
-      overflow: hidden;
-      white-space: nowrap;
-      width: 0;
-      opacity: 0;
-      animation-delay: 0.5s;
-    }
-
-    @keyframes fadeInTyping {
-      0% { width: 0; opacity: 0; }
-      50% { opacity: 1; }
-      100% { width: 100%; opacity: 1; }
+    .title-image {
+      max-width: 90%;
+      width: 500px;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .subline {
@@ -113,8 +105,8 @@
   </style>
 </head>
 <body>
-  <h1 id="main-title">番號動畫化企劃 即將公開!!!</h1>
-  <div id="main-content" style="opacity: 0; transition: opacity 1s ease 0.5s;">
+  <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
+  <div id="main-content">
     <div class="subline">
       次元壁將於 <span id="countdown-text"></span> 粉碎
     </div>
@@ -155,12 +147,6 @@
         document.getElementById("flipdown").style.display = "none";
         document.getElementById("countdown-text").innerText = "次元已突破！番號連結開啟中…";
       });
-
-    const mainTitle = document.getElementById("main-title");
-    const mainContent = document.getElementById("main-content");
-    mainTitle.addEventListener("animationend", () => {
-      mainContent.style.opacity = 1;
-    });
   </script>
 </body>
 </html>
