@@ -41,11 +41,29 @@
       border-radius: 8px;
     }
 
-    .subtitle {
+    .subtitle-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .subline {
       font-size: 2rem;
       font-weight: bold;
-      margin-top: 1.5rem;
       color: white;
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+    }
+
+    .countdown-box {
+      font-size: 2rem;
+      padding: 0.3rem 1rem;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
       text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
     }
 
@@ -131,12 +149,15 @@
     }
 
     @media (max-width: 600px) {
-      .subtitle {
-        font-size: 1.2rem;
+      .subline,
+      .countdown-box {
+        font-size: 1.4rem;
       }
+
       .card {
         width: 90%;
       }
+
       .card-container {
         gap: 1rem;
       }
@@ -150,7 +171,11 @@
   <!-- 主標 + 副標倒數 -->
   <div class="title-wrapper">
     <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
-    <div class="subtitle" id="countdown-subtitle">次元壁將於 ... 粉碎</div>
+    <div class="subtitle-row">
+      <span class="subline">次元壁將於</span>
+      <div class="countdown-box" id="countdown-text">3天 0時 0分 0秒</div>
+      <span class="subline">粉碎</span>
+    </div>
   </div>
 
   <!-- 卡片區塊 -->
@@ -185,36 +210,4 @@
           <div class="title">夜勤病棟</div>
         </div>
       </div>
-      <a href="https://modelmediaaisa.pse.is/79h7ac" target="_blank" class="btn">點我解鎖番號</a>
-    </div>
-  </div>
-
-  <!-- 主 CTA -->
-  <div class="main-cta">
-    <a href="https://modelmediaaisa.pse.is/6yam6v" target="_blank" class="btn">❤️ 立即預約老婆 ❤️</a>
-  </div>
-
-  <script>
-    const subtitle = document.getElementById("countdown-subtitle");
-    const targetDate = new Date("2025-04-01T00:00:00").getTime();
-
-    const countdown = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        clearInterval(countdown);
-        subtitle.textContent = "次元已突破！番號連結開啟中…";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      subtitle.textContent = `次元壁將於 ${days}天 ${hours}時 ${minutes}分 ${seconds}秒 粉碎`;
-    }, 1000);
-  </script>
-</body>
-</html>
+      <a href="https://modelmediaaisa
