@@ -47,7 +47,7 @@
 
     .subtitle-row {
       position: absolute;
-      bottom: -1rem;
+      bottom: -1.2rem;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -104,10 +104,12 @@
       overflow: hidden;
       width: 260px;
       box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .card-img {
-      position: relative;
       width: 100%;
       height: 360px;
       overflow: hidden;
@@ -119,22 +121,18 @@
       object-fit: cover;
     }
 
-    .card-overlay {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
+    .card-info {
       padding: 1rem;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-      color: #fff;
-      box-sizing: border-box;
+      background-color: rgba(0, 0, 0, 0.65);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .card-overlay .meta {
+    .card-info .meta {
       font-size: 0.8rem;
       color: #ccc;
     }
 
-    .card-overlay .title {
+    .card-info .title {
       font-size: 1rem;
       font-weight: bold;
       margin-top: 0.3rem;
@@ -146,9 +144,10 @@
       padding: 0.5rem 1rem;
       border-radius: 8px;
       font-size: 0.9rem;
-      margin: 0.8rem 0 1rem;
+      margin: 0.8rem auto 1rem;
       text-decoration: none;
       display: inline-block;
+      width: fit-content;
     }
 
     .main-cta {
@@ -200,10 +199,10 @@
     <div class="card">
       <div class="card-img">
         <img src="assets/MD-0345.jpg" alt="MD-0345" />
-        <div class="card-overlay">
-          <div class="meta">MD-0345｜主演：露露、沈娜娜</div>
-          <div class="title">父喪姐妹的原罪</div>
-        </div>
+      </div>
+      <div class="card-info">
+        <div class="meta">MD-0345｜主演：露露、沈娜娜</div>
+        <div class="title">父喪姐妹的原罪</div>
       </div>
       <a href="https://modelmediaaisa.pse.is/7buxbd" target="_blank" class="btn">點我解鎖番號</a>
     </div>
@@ -211,10 +210,10 @@
     <div class="card">
       <div class="card-img">
         <img src="assets/MDCM-0015.jpg" alt="MDCM-0015" />
-        <div class="card-overlay">
-          <div class="meta">MDCM-0015｜經典改編</div>
-          <div class="title">哪吒之三龍女大戰真陽魔童</div>
-        </div>
+      </div>
+      <div class="card-info">
+        <div class="meta">MDCM-0015｜經典改編</div>
+        <div class="title">哪吒之三龍女大戰真陽魔童</div>
       </div>
       <a href="https://modelmediaaisa.pse.is/7aq6zs" target="_blank" class="btn">點我解鎖番號</a>
     </div>
@@ -222,10 +221,10 @@
     <div class="card">
       <div class="card-img">
         <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3" />
-        <div class="card-overlay">
-          <div class="meta">MD-0180-3｜病弱母女受難記</div>
-          <div class="title">夜勤病棟</div>
-        </div>
+      </div>
+      <div class="card-info">
+        <div class="meta">MD-0180-3｜病弱母女受難記</div>
+        <div class="title">夜勤病棟</div>
       </div>
       <a href="https://modelmediaaisa.pse.is/79h7ac" target="_blank" class="btn">點我解鎖番號</a>
     </div>
