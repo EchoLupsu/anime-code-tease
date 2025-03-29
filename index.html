@@ -69,14 +69,14 @@
       font-size: 1.8rem;
       padding: 0.4rem 1.2rem;
       background: rgba(0, 0, 0, 0.35);
-      border: 2px solid #00ffe1;
+      border: 2px solid #ff99cc;
       border-radius: 12px;
-      color: #ffffff;
-      text-shadow: 0 0 8px #00ffff;
+      color: #fff;
+      text-shadow: 0 0 8px #ff99cc;
       box-shadow:
-        0 0 10px #00ffe1,
-        0 0 20px #00ffe1,
-        inset 0 0 10px #00ffe1;
+        0 0 10px #ff99cc,
+        0 0 20px #ff99cc,
+        inset 0 0 10px #ff99cc;
       backdrop-filter: blur(6px);
       transition: all 0.3s ease;
     }
@@ -84,9 +84,9 @@
     .countdown-box:hover {
       transform: scale(1.03);
       box-shadow:
-        0 0 15px #00ffe1,
-        0 0 30px #00ffe1,
-        inset 0 0 15px #00ffe1;
+        0 0 15px #ff99cc,
+        0 0 30px #ff99cc,
+        inset 0 0 15px #ff99cc;
     }
 
     .card-container {
@@ -155,26 +155,20 @@
     }
 
     .main-cta .btn {
-      background: linear-gradient(45deg, #ff7eb3, #ff4081);
+      background-color: #ff99cc;
       color: white;
       font-size: 1.4rem;
       padding: 1rem 2.5rem;
       border-radius: 2rem;
       text-decoration: none;
+      box-shadow: 0 0 15px #ff99ccaa;
       border: none;
-      box-shadow:
-        0 0 10px #ff80ab,
-        0 0 20px #ff4081,
-        0 0 30px #ff4081;
       transition: all 0.3s ease;
     }
 
     .main-cta .btn:hover {
       transform: scale(1.05);
-      box-shadow:
-        0 0 15px #ff80ab,
-        0 0 30px #ff4081,
-        0 0 45px #ff4081;
+      box-shadow: 0 0 25px #ff99cc;
     }
 
     @media (max-width: 600px) {
@@ -244,7 +238,7 @@
   </div>
 
   <div class="main-cta">
-    <a href="https://modelmediaaisa.pse.is/6yam6v" target="_blank" class="btn">❤️ 立即預約老婆 ❤️</a>
+    <a href="#" class="btn">❤️ 立即預約老婆 ❤️</a>
   </div>
 
   <script>
@@ -268,6 +262,15 @@
 
       countdownBox.textContent = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
     }, 1000);
+
+    // 👉 按鈕點擊跳轉
+    document.querySelector('.main-cta .btn').addEventListener('click', function(event) {
+      event.preventDefault();
+      const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
+      if (confirmed) {
+        window.location.href = "https://modelmediaasia.com/zh-CN/posts/27";
+      }
+    });
   </script>
 </body>
 </html>
