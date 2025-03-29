@@ -171,6 +171,13 @@
       box-shadow: 0 0 25px #ff99cc;
     }
 
+    .footer-hint {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
     @media (max-width: 600px) {
       .subline,
       .countdown-box {
@@ -241,6 +248,8 @@
     <a href="#" class="btn">❤️ 立即預約老婆 ❤️</a>
   </div>
 
+  <div class="footer-hint">4月1日 企劃全面開啟</div>
+
   <script>
     const targetDate = new Date("2025-04-01T00:00:00").getTime();
     const countdownBox = document.getElementById("countdown-text");
@@ -263,7 +272,6 @@
       countdownBox.textContent = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
     }, 1000);
 
-    // 👉 按鈕點擊跳轉
     document.querySelector('.main-cta .btn').addEventListener('click', function(event) {
       event.preventDefault();
       const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
