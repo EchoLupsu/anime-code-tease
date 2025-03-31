@@ -11,15 +11,9 @@
       padding: 0;
       font-family: 'Noto Sans TC', sans-serif;
       color: #fff;
+      background: #000;
       text-align: center;
       overflow-x: hidden;
-      background: #000;
-    }
-
-    body.age-gated #main-content {
-      filter: blur(10px);
-      pointer-events: none;
-      user-select: none;
     }
 
     .background {
@@ -29,15 +23,27 @@
       width: 100vw;
       height: 100vh;
       background: url("assets/BG.webp") center center / cover no-repeat fixed;
-      filter: blur(8px);
       z-index: -2;
+    }
+
+    #main-overlay {
+      position: fixed;
+      inset: 0;
+      backdrop-filter: blur(12px);
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    #main-overlay.hidden {
+      display: none;
     }
 
     .age-overlay {
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.85);
-      z-index: 9999;
+      z-index: 1001;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -147,14 +153,6 @@
       transition: all 0.3s ease;
     }
 
-    .countdown-box:hover {
-      transform: scale(1.03);
-      box-shadow:
-        0 0 15px #ff99cc,
-        0 0 30px #ff99cc,
-        inset 0 0 15px #ff99cc;
-    }
-
     .card-container {
       display: flex;
       justify-content: center;
@@ -260,11 +258,12 @@
     }
   </style>
 </head>
-<body class="age-gated">
+<body>
 
   <div class="background"></div>
 
-  <!-- 年齡驗證 -->
+  <div id="main-overlay"></div>
+
   <div class="age-overlay" id="ageGate">
     <div class="age-modal">
       <h2>⚠️ 本網站內容可能不適合未成年人</h2>
@@ -274,7 +273,6 @@
     </div>
   </div>
 
-  <!-- 主內容 -->
   <div id="main-content">
     <div class="title-wrapper">
       <div class="title-image-wrapper">
@@ -345,6 +343,15 @@
       countdownBox.textContent = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
     }, 1000);
 
+    document.getElementById('confirm-age').addEventListener('click', function () {
+      document.getElementById('main-overlay').classList.add('hidden');
+      document.getElementById('ageGate').classList.add('hidden');
+    });
+
+    function leaveSite() {
+      window.location.href = 'https://www.google.com';
+    }
+
     document.querySelector('.main-cta .btn').addEventListener('click', function(event) {
       event.preventDefault();
       const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
@@ -352,15 +359,6 @@
         window.location.href = "https://modelmediaasia.com/zh-CN/posts/27";
       }
     });
-
-    document.getElementById('confirm-age').addEventListener('click', function () {
-      document.querySelector('.age-overlay').classList.add('hidden');
-      document.body.classList.remove('age-gated');
-    });
-
-    function leaveSite() {
-      window.location.href = 'https://www.google.com';
-    }
   </script>
 </body>
 </html>
