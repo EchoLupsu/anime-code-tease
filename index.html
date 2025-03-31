@@ -27,8 +27,12 @@
       width: 100vw;
       height: 100vh;
       background: url("assets/BG.webp") center center / cover no-repeat fixed;
-      filter: blur(6px);
       z-index: -1;
+      transition: filter 0.3s ease;
+    }
+
+    body.age-gated .background {
+      filter: blur(12px);
     }
 
     .age-overlay {
@@ -258,7 +262,7 @@
     }
   </style>
 </head>
-<body>
+<body class="age-gated">
   <div class="background"></div>
 
   <div class="age-overlay" id="ageGate">
@@ -354,6 +358,7 @@
 
     document.getElementById('confirm-age').addEventListener('click', function () {
       document.getElementById('ageGate').classList.add('hidden');
+      document.body.classList.remove('age-gated');
     });
 
     function leaveSite() {
