@@ -22,7 +22,8 @@
       font-size: 16px;
     }
 
-    .age-gated #main-content {
+    .age-gated #main-content,
+    .age-gated .background {
       filter: blur(24px);
       pointer-events: none;
       user-select: none;
@@ -112,8 +113,8 @@
   </div>
 
   <div id="main-content">
-  <!-- 主網站內容整合 -->
-  <main>
+    <!-- 主網站內容開始 -->
+    <!-- 將 main.html 的實際內容整合於此 -->
     <div class="title-wrapper">
       <div class="title-image-wrapper">
         <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
@@ -161,14 +162,31 @@
     </div>
 
     <div class="main-cta">
-      <a href="#" class="btn">❤️ 立即預約老婆 ❤️</a>
+      <a href="#" class="btn" onclick="confirmWife(event)">❤️ 立即預約老婆 ❤️</a>
     </div>
 
     <div class="footer-hint">4月1日 企劃全面開啟</div>
-  </main>
+    <!-- 主網站內容結束 -->
   </div>
 
   <script>
+    document.getElementById('confirm-age').addEventListener('click', function () {
+      document.getElementById('ageGate').classList.add('hidden');
+      document.body.classList.remove('age-gated');
+    });
+
+    function leaveSite() {
+      window.location.href = 'https://www.google.com';
+    }
+
+    function confirmWife(event) {
+      event.preventDefault();
+      const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
+      if (confirmed) {
+        window.location.href = "https://modelmediaasia.com/zh-CN/posts/27";
+      }
+    }
+
     const targetDate = new Date("2025-04-01T00:00:00").getTime();
     const countdownBox = document.getElementById("countdown-text");
 
@@ -189,23 +207,6 @@
 
       countdownBox.textContent = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
     }, 1000);
-
-    document.querySelector('.main-cta .btn').addEventListener('click', function(event) {
-      event.preventDefault();
-      const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
-      if (confirmed) {
-        window.location.href = "https://modelmediaasia.com/zh-CN/posts/27";
-      }
-    });
-
-    document.getElementById('confirm-age').addEventListener('click', function () {
-      document.getElementById('ageGate').classList.add('hidden');
-      document.body.classList.remove('age-gated');
-    });
-
-    function leaveSite() {
-      window.location.href = 'https://www.google.com';
-    }
   </script>
 </body>
 </html>
