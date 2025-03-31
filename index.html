@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+  <!-- 設置字符集與視窗 -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>番號動畫化企劃</title>
+  <!-- 引入 Google 字體 -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
+    /* 全局樣式，設置字體、背景色、文字顏色等 */
     html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Noto Sans TC', sans-serif;
-      color: #fff;
-      text-align: center;
-      overflow-x: hidden;
-      background: #000;
+      margin: 0; /* 清除默認外邊距 */
+      padding: 0; /* 清除默認內邊距 */
+      font-family: 'Noto Sans TC', sans-serif; /* 設置字體 */
+      color: #fff; /* 文字顏色為白色 */
+      text-align: center; /* 文字居中 */
+      overflow-x: hidden; /* 隱藏水平滾動 */
+      background: #000; /* 背景色為黑色 */
     }
 
+    /* 當頁面處於年齡驗證狀態時，主內容添加模糊效果及禁用交互 */
     body.age-gated #main-content {
       filter: blur(10px);
       pointer-events: none;
       user-select: none;
     }
 
+    /* 背景圖片樣式 */
     .background {
-      position: fixed;
+      position: fixed; /* 固定定位，始終在視窗中 */
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url("assets/BG.webp") center center / cover no-repeat fixed;
-      filter: blur(10px); /* 模糊值調整為 40px */
-      z-index: 0; /* 調整為非負值 */
+      width: 100vw; /* 寬度佔滿視窗 */
+      height: 100vh; /* 高度佔滿視窗 */
+      background: url("assets/BG.webp") center center / cover no-repeat fixed; /* 設置背景圖片 */
+      filter: blur(10px); /* 模糊效果，若需要可在此調整數值 */
+      z-index: 0; /* 背景層級 */
     }
 
-    /* 確保主內容在背景之上 */
+    /* 主內容確保在背景上面 */
     #main-content {
       position: relative;
       z-index: 1;
     }
 
+    /* 年齡驗證遮罩樣式 */
     .age-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: fixed; /* 固定定位 */
+      inset: 0; /* 上下左右全設為 0 */
+      background: rgba(0, 0, 0, 0.85); /* 半透明黑色背景 */
+      z-index: 9999; /* 層級最高 */
+      display: flex; /* 使用 Flex 布局 */
+      align-items: center; /* 垂直居中 */
+      justify-content: center; /* 水平居中 */
     }
 
+    /* 當驗證通過後隱藏遮罩 */
     .age-overlay.hidden {
       display: none;
     }
 
+    /* 年齡驗證彈窗樣式 */
     .age-modal {
       background: #1a1a1a;
       border: 2px solid #ff4081;
@@ -75,6 +83,7 @@
       color: #ccc;
     }
 
+    /* 按鈕通用樣式 */
     .age-modal .btn {
       padding: 0.6rem 1.5rem;
       margin: 0 0.5rem;
@@ -99,17 +108,20 @@
       opacity: 0.85;
     }
 
+    /* 主題標題區塊樣式 */
     .title-wrapper {
       width: 100%;
       max-width: 700px;
       margin: 1rem auto 2rem;
     }
 
+    /* 標題圖片外層容器 */
     .title-image-wrapper {
       position: relative;
       display: inline-block;
     }
 
+    /* 標題圖片樣式 */
     .title-image {
       width: 100%;
       height: auto;
@@ -117,9 +129,10 @@
       border-radius: 8px;
     }
 
+    /* 子標題行樣式 */
     .subtitle-row {
       position: absolute;
-      bottom: -1.2rem;
+      bottom: -1.2rem; /* 與圖片底部重疊 */
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -137,6 +150,7 @@
       text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
     }
 
+    /* 倒數計時盒子樣式 */
     .countdown-box {
       font-size: 1.8rem;
       padding: 0.4rem 1.2rem;
@@ -161,6 +175,7 @@
         inset 0 0 15px #ff99cc;
     }
 
+    /* 卡片容器樣式 */
     .card-container {
       display: flex;
       justify-content: center;
@@ -170,6 +185,7 @@
       max-width: 1200px;
     }
 
+    /* 單個卡片樣式 */
     .card {
       background-color: rgba(0, 0, 0, 0.6);
       border-radius: 1.5rem;
@@ -181,18 +197,21 @@
       justify-content: space-between;
     }
 
+    /* 卡片圖片容器 */
     .card-img {
       width: 100%;
       height: 360px;
       overflow: hidden;
     }
 
+    /* 卡片圖片樣式 */
     .card-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
+    /* 卡片內部資訊區 */
     .card-info {
       padding: 1rem;
       background-color: rgba(0, 0, 0, 0.65);
@@ -210,6 +229,7 @@
       margin-top: 0.3rem;
     }
 
+    /* 卡片內按鈕樣式 */
     .card .btn {
       background-color: #7b2ff7;
       color: #fff;
@@ -222,6 +242,7 @@
       width: fit-content;
     }
 
+    /* 頁面主操作按鈕區 */
     .main-cta {
       margin-top: 2rem;
     }
@@ -243,6 +264,7 @@
       box-shadow: 0 0 25px #ff99cc;
     }
 
+    /* 頁面底部提示文字 */
     .footer-hint {
       margin-top: 3rem;
       font-size: 0.85rem;
@@ -250,16 +272,15 @@
       text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     }
 
+    /* 響應式設置 */
     @media (max-width: 600px) {
       .subline,
       .countdown-box {
         font-size: 1.4rem;
       }
-
       .card {
         width: 90%;
       }
-
       .card-container {
         gap: 1rem;
       }
@@ -268,43 +289,58 @@
 </head>
 <body class="age-gated">
 
+  <!-- 背景圖片 -->
   <div class="background"></div>
 
-  <!-- 年齡驗證 -->
+  <!-- 年齡驗證遮罩 -->
   <div class="age-overlay" id="ageGate">
     <div class="age-modal">
       <h2>⚠️ 本網站內容可能不適合未成年人</h2>
       <p>請確認您已滿 18 歲才能繼續瀏覽。</p>
+      <!-- 驗證通過按鈕 -->
       <button class="btn btn-yes" id="confirm-age">是，我已滿 18 歲</button>
+      <!-- 驗證未通過按鈕，點擊後跳轉到 Google -->
       <button class="btn btn-no" onclick="leaveSite()">否</button>
     </div>
   </div>
 
-  <!-- 主內容 -->
+  <!-- 主內容區 -->
   <div id="main-content">
+    <!-- 標題區 -->
     <div class="title-wrapper">
       <div class="title-image-wrapper">
+        <!-- 主題圖片 -->
         <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
+        <!-- 子標題與倒數計時 -->
         <div class="subtitle-row">
           <span class="subline">次元壁將於</span>
+          <!-- 倒數計時顯示框 -->
           <div class="countdown-box" id="countdown-text">3天 0時 0分 0秒</div>
           <span class="subline">粉碎</span>
         </div>
       </div>
     </div>
 
+    <!-- 卡片區 -->
     <div class="card-container">
+      <!-- 第一個卡片 -->
       <div class="card">
-        <div class="card-img"><img src="assets/MD-0345.jpg" alt="MD-0345" /></div>
+        <div class="card-img">
+          <img src="assets/MD-0345.jpg" alt="MD-0345" />
+        </div>
         <div class="card-info">
           <div class="meta">MD-0345｜"喪"文化的視覺衝擊</div>
           <div class="title">父喪姐妹的原罪</div>
         </div>
+        <!-- 解鎖按鈕，點擊後跳轉到指定網址 -->
         <a href="https://modelmediaaisa.pse.is/7buxbd" target="_blank" class="btn">點我解鎖番號</a>
       </div>
 
+      <!-- 第二個卡片 -->
       <div class="card">
-        <div class="card-img"><img src="assets/MDCM-0015.jpg" alt="MDCM-0015" /></div>
+        <div class="card-img">
+          <img src="assets/MDCM-0015.jpg" alt="MDCM-0015" />
+        </div>
         <div class="card-info">
           <div class="meta">MDCM-0015｜百億票房翻拍</div>
           <div class="title">哪吒之三龍女大戰真陽魔童</div>
@@ -312,8 +348,11 @@
         <a href="https://modelmediaaisa.pse.is/7aq6zs" target="_blank" class="btn">點我解鎖番號</a>
       </div>
 
+      <!-- 第三個卡片 -->
       <div class="card">
-        <div class="card-img"><img src="assets/MD-0180-3.jpeg" alt="MD-0180-3" /></div>
+        <div class="card-img">
+          <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3" />
+        </div>
         <div class="card-info">
           <div class="meta">MD-0180-3｜經典黃油改編</div>
           <div class="title">夜勤病棟</div>
@@ -322,48 +361,76 @@
       </div>
     </div>
 
+    <!-- 主操作按鈕區 -->
     <div class="main-cta">
+      <!-- 預約按鈕 -->
       <a href="#" class="btn">❤️ 立即預約老婆 ❤️</a>
     </div>
 
+    <!-- 頁腳提示 -->
     <div class="footer-hint">4月1日 企劃全面開啟</div>
   </div>
 
   <script>
+    // 設置目標日期(倒計時結束時間)
     const targetDate = new Date("2025-04-01T00:00:00").getTime();
+    // 取得倒數計時顯示元素
     const countdownBox = document.getElementById("countdown-text");
+    // 倒計時完成標記，預設為 false
+    let countdownFinished = false;
 
+    // 設置倒計時，使用 setInterval 每秒更新一次
     const countdown = setInterval(() => {
+      // 取得當前時間
       const now = new Date().getTime();
+      // 計算剩餘毫秒數
       const distance = targetDate - now;
 
+      // 若剩餘時間小於0，表示倒計時結束
       if (distance < 0) {
-        clearInterval(countdown);
+        clearInterval(countdown);  // 停止倒計時
+        countdownFinished = true;  // 標記倒計時完成
         countdownBox.textContent = "次元已突破！番號連結開啟中…";
         return;
       }
 
+      // 計算剩餘的天、時、分、秒
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+      // 更新倒計時顯示內容
       countdownBox.textContent = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
     }, 1000);
 
+    // 為主操作按鈕添加點擊事件
     document.querySelector('.main-cta .btn').addEventListener('click', function(event) {
-      event.preventDefault();
-      const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
-      if (confirmed) {
-        window.location.href = "https://modelmediaaisa.pse.is/7cve4e";
+      event.preventDefault(); // 防止預設連結行為
+      // 若倒計時尚未結束，顯示提示訊息
+      if (!countdownFinished) {
+        // 顯示確認對話框，訊息中說明企劃啓動時間與提示用戶前往指定網站
+        const confirmed = confirm("企劃將於4/1正式啓動，請到麻豆國際版網站查看最新番號");
+        if (confirmed) {
+          // 用戶點擊確定後跳轉到指定連結
+          window.location.href = "https://modelmediaaisa.pse.is/6yam6v";
+        }
+      } else {
+        // 當倒計時結束後，顯示原本的預約確認提示
+        const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
+        if (confirmed) {
+          window.location.href = "https://modelmediaaisa.pse.is/7cve4e";
+        }
       }
     });
 
+    // 年齡驗證通過，隱藏遮罩並恢復主內容交互
     document.getElementById('confirm-age').addEventListener('click', function () {
       document.querySelector('.age-overlay').classList.add('hidden');
       document.body.classList.remove('age-gated');
     });
 
+    // 當用戶選擇否時跳轉到 Google
     function leaveSite() {
       window.location.href = 'https://www.google.com';
     }
