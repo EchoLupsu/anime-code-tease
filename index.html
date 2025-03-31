@@ -22,14 +22,17 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url("assets/BG.webp") center center / cover no-repeat fixed;
-      z-index: -1;
+      width: 100%;
+      height: 100%;
+      background-image: url('assets/BG.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      z-index: 0;
       transition: filter 0.3s ease;
     }
 
-    /* ✅ 修正：彈窗開啟時整體模糊 */
     .age-gated .background,
     .age-gated #main-content {
       filter: blur(24px);
@@ -37,11 +40,16 @@
       user-select: none;
     }
 
+    #main-content {
+      position: relative;
+      z-index: 1;
+    }
+
     .age-overlay {
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.85);
-      z-index: 9999;
+      z-index: 999;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -261,7 +269,6 @@
 <body class="age-gated">
   <div class="background"></div>
 
-  <!-- 年齡驗證 -->
   <div class="age-overlay" id="ageGate">
     <div class="age-modal">
       <h2>⚠️ 本網站內容可能不適合未成年人</h2>
@@ -271,53 +278,9 @@
     </div>
   </div>
 
-  <!-- 主內容 -->
   <div id="main-content">
-    <div class="title-wrapper">
-      <div class="title-image-wrapper">
-        <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
-        <div class="subtitle-row">
-          <span class="subline">次元壁將於</span>
-          <div class="countdown-box" id="countdown-text">3天 0時 0分 0秒</div>
-          <span class="subline">粉碎</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-container">
-      <div class="card">
-        <div class="card-img"><img src="assets/MD-0345.jpg" alt="MD-0345" /></div>
-        <div class="card-info">
-          <div class="meta">MD-0345｜主演：露露、沈娜娜</div>
-          <div class="title">父喪姐妹的原罪</div>
-        </div>
-        <a href="https://modelmediaaisa.pse.is/7buxbd" target="_blank" class="btn">點我解鎖番號</a>
-      </div>
-
-      <div class="card">
-        <div class="card-img"><img src="assets/MDCM-0015.jpg" alt="MDCM-0015" /></div>
-        <div class="card-info">
-          <div class="meta">MDCM-0015｜經典改編</div>
-          <div class="title">哪吒之三龍女大戰真陽魔童</div>
-        </div>
-        <a href="https://modelmediaaisa.pse.is/7aq6zs" target="_blank" class="btn">點我解鎖番號</a>
-      </div>
-
-      <div class="card">
-        <div class="card-img"><img src="assets/MD-0180-3.jpeg" alt="MD-0180-3" /></div>
-        <div class="card-info">
-          <div class="meta">MD-0180-3｜病弱母女受難記</div>
-          <div class="title">夜勤病棟</div>
-        </div>
-        <a href="https://modelmediaaisa.pse.is/79h7ac" target="_blank" class="btn">點我解鎖番號</a>
-      </div>
-    </div>
-
-    <div class="main-cta">
-      <a href="#" class="btn">❤️ 立即預約老婆 ❤️</a>
-    </div>
-
-    <div class="footer-hint">4月1日 企劃全面開啟</div>
+    <!-- 你的標題、倒數與卡片區塊 -->
+    <!-- （略，與前段相同） -->
   </div>
 
   <script>
@@ -342,17 +305,17 @@
       countdownBox.textContent = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
     }, 1000);
 
+    document.getElementById('confirm-age').addEventListener('click', function () {
+      document.getElementById('ageGate').classList.add('hidden');
+      document.body.classList.remove('age-gated');
+    });
+
     document.querySelector('.main-cta .btn').addEventListener('click', function(event) {
       event.preventDefault();
       const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
       if (confirmed) {
         window.location.href = "https://modelmediaasia.com/zh-CN/posts/27";
       }
-    });
-
-    document.getElementById('confirm-age').addEventListener('click', function () {
-      document.getElementById('ageGate').classList.add('hidden');
-      document.body.classList.remove('age-gated');
     });
 
     function leaveSite() {
