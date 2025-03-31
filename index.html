@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>番號動畫化企劃</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
@@ -18,26 +18,24 @@
       height: 100%;
     }
 
-    html {
-      font-size: 16px;
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url("assets/BG.webp") center center / cover no-repeat fixed;
+      z-index: -1;
+      transition: filter 0.3s ease;
     }
 
-  .background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: url("assets/BG.webp") center center / cover no-repeat fixed;
-    z-index: -1;
-    transition: filter 0.3s ease;
-  }
-  .age-gated .background,
-  .age-gated #main-content {
-    filter: blur(24px);
-    pointer-events: none;
-    user-select: none;
-  }
+    /* ✅ 修正：彈窗開啟時整體模糊 */
+    .age-gated .background,
+    .age-gated #main-content {
+      filter: blur(24px);
+      pointer-events: none;
+      user-select: none;
+    }
 
     .age-overlay {
       position: fixed;
@@ -99,7 +97,6 @@
       opacity: 0.85;
     }
 
-    /* === 主內容樣式 === */
     .title-wrapper {
       width: 100%;
       max-width: 700px;
@@ -146,20 +143,14 @@
       border-radius: 12px;
       color: #fff;
       text-shadow: 0 0 8px #ff99cc;
-      box-shadow:
-        0 0 10px #ff99cc,
-        0 0 20px #ff99cc,
-        inset 0 0 10px #ff99cc;
+      box-shadow: 0 0 10px #ff99cc, 0 0 20px #ff99cc, inset 0 0 10px #ff99cc;
       backdrop-filter: blur(6px);
       transition: all 0.3s ease;
     }
 
     .countdown-box:hover {
       transform: scale(1.03);
-      box-shadow:
-        0 0 15px #ff99cc,
-        0 0 30px #ff99cc,
-        inset 0 0 15px #ff99cc;
+      box-shadow: 0 0 15px #ff99cc, 0 0 30px #ff99cc, inset 0 0 15px #ff99cc;
     }
 
     .card-container {
@@ -270,7 +261,7 @@
 <body class="age-gated">
   <div class="background"></div>
 
-  <!-- 年齡驗證彈窗 -->
+  <!-- 年齡驗證 -->
   <div class="age-overlay" id="ageGate">
     <div class="age-modal">
       <h2>⚠️ 本網站內容可能不適合未成年人</h2>
@@ -294,11 +285,8 @@
     </div>
 
     <div class="card-container">
-      <!-- 三張卡片 -->
       <div class="card">
-        <div class="card-img">
-          <img src="assets/MD-0345.jpg" alt="MD-0345" />
-        </div>
+        <div class="card-img"><img src="assets/MD-0345.jpg" alt="MD-0345" /></div>
         <div class="card-info">
           <div class="meta">MD-0345｜主演：露露、沈娜娜</div>
           <div class="title">父喪姐妹的原罪</div>
@@ -307,9 +295,7 @@
       </div>
 
       <div class="card">
-        <div class="card-img">
-          <img src="assets/MDCM-0015.jpg" alt="MDCM-0015" />
-        </div>
+        <div class="card-img"><img src="assets/MDCM-0015.jpg" alt="MDCM-0015" /></div>
         <div class="card-info">
           <div class="meta">MDCM-0015｜經典改編</div>
           <div class="title">哪吒之三龍女大戰真陽魔童</div>
@@ -318,9 +304,7 @@
       </div>
 
       <div class="card">
-        <div class="card-img">
-          <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3" />
-        </div>
+        <div class="card-img"><img src="assets/MD-0180-3.jpeg" alt="MD-0180-3" /></div>
         <div class="card-info">
           <div class="meta">MD-0180-3｜病弱母女受難記</div>
           <div class="title">夜勤病棟</div>
@@ -358,7 +342,15 @@
       countdownBox.textContent = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
     }, 1000);
 
-    document.getElementById('confirm-age').addEventListener('click', () => {
+    document.querySelector('.main-cta .btn').addEventListener('click', function(event) {
+      event.preventDefault();
+      const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
+      if (confirmed) {
+        window.location.href = "https://modelmediaasia.com/zh-CN/posts/27";
+      }
+    });
+
+    document.getElementById('confirm-age').addEventListener('click', function () {
       document.getElementById('ageGate').classList.add('hidden');
       document.body.classList.remove('age-gated');
     });
@@ -366,14 +358,6 @@
     function leaveSite() {
       window.location.href = 'https://www.google.com';
     }
-
-    document.querySelector('.main-cta .btn').addEventListener('click', function (event) {
-      event.preventDefault();
-      const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
-      if (confirmed) {
-        window.location.href = "https://modelmediaasia.com/zh-CN/posts/27";
-      }
-    });
   </script>
 </body>
 </html>
