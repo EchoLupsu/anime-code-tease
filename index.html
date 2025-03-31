@@ -37,6 +37,10 @@
       justify-content: center;
     }
 
+    .age-overlay.hidden {
+      display: none;
+    }
+
     .age-modal {
       background: #1a1a1a;
       border: 2px solid #ff4081;
@@ -87,6 +91,7 @@
 <body>
   <div class="background"></div>
 
+  <!-- 年齡驗證彈窗 -->
   <div class="age-overlay" id="ageGate">
     <div class="age-modal">
       <h2>⚠️ 本網站內容可能不適合未成年人</h2>
@@ -96,7 +101,7 @@
     </div>
   </div>
 
-  <!-- 原有內容將會接在這裡插入 -->
+  <!-- 主內容區塊 -->
   <div class="title-wrapper">
     <div class="title-image-wrapper">
       <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
@@ -180,7 +185,7 @@
     });
 
     function enterSite() {
-      document.getElementById('ageGate').style.display = 'none';
+      document.getElementById('ageGate').classList.add('hidden');
     }
 
     function leaveSite() {
