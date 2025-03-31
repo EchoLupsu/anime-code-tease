@@ -2,11 +2,11 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>番號動畫化企劃</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
       font-family: 'Noto Sans TC', sans-serif;
@@ -14,19 +14,6 @@
       text-align: center;
       overflow-x: hidden;
       background: #000;
-      width: 100%;
-      height: 100%;
-    }
-
-    html {
-      font-size: 16px;
-    }
-
-    .age-gated #main-content,
-    .age-gated .background {
-      filter: blur(24px);
-      pointer-events: none;
-      user-select: none;
     }
 
     .background {
@@ -36,157 +23,234 @@
       width: 100vw;
       height: 100vh;
       background: url("assets/BG.webp") center center / cover no-repeat fixed;
+      filter: blur(6px);
       z-index: -1;
-      transition: filter 0.3s ease;
     }
 
-    .age-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 9999;
+    .title-wrapper {
+      width: 100%;
+      max-width: 700px;
+      margin: 2rem auto;
+    }
+
+    .title-image-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .title-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .subtitle-row {
+      position: absolute;
+      bottom: -1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
 
-    .age-overlay.hidden {
-      display: none;
+    .subline {
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
     }
 
-    .age-modal {
-      background: #1a1a1a;
-      border: 2px solid #ff4081;
+    .countdown-box {
+      font-size: 1.8rem;
+      padding: 0.4rem 1.2rem;
+      background: rgba(0, 0, 0, 0.35);
+      border: 2px solid #ff99cc;
       border-radius: 12px;
-      padding: 2rem 2.5rem;
-      text-align: center;
-      max-width: 90%;
-      box-shadow: 0 0 20px #ff4081aa;
       color: #fff;
+      text-shadow: 0 0 8px #ff99cc;
+      box-shadow:
+        0 0 10px #ff99cc,
+        0 0 20px #ff99cc,
+        inset 0 0 10px #ff99cc;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
     }
 
-    .age-modal h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+    .countdown-box:hover {
+      transform: scale(1.03);
+      box-shadow:
+        0 0 15px #ff99cc,
+        0 0 30px #ff99cc,
+        inset 0 0 15px #ff99cc;
     }
 
-    .age-modal p {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem auto 1rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      width: 260px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 360px;
+      overflow: hidden;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-info {
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.65);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-info .meta {
+      font-size: 0.8rem;
       color: #ccc;
     }
 
-    .age-modal .btn {
-      padding: 0.6rem 1.5rem;
-      margin: 0 0.5rem;
-      border: none;
+    .card-info .title {
       font-size: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.2s;
+      font-weight: bold;
+      margin-top: 0.3rem;
     }
 
-    .btn-yes {
-      background: #ff4081;
+    .card .btn {
+      background-color: #7b2ff7;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin: 0.8rem auto 1rem;
+      text-decoration: none;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .main-cta {
+      margin-top: 2rem;
+    }
+
+    .main-cta .btn {
+      background-color: #ff99cc;
       color: white;
+      font-size: 1.4rem;
+      padding: 1rem 2.5rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      box-shadow: 0 0 15px #ff99ccaa;
+      border: none;
+      transition: all 0.3s ease;
     }
 
-    .btn-no {
-      background: #555;
-      color: white;
+    .main-cta .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff99cc;
     }
 
-    .btn:hover {
-      opacity: 0.85;
+    .footer-hint {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .subline,
+      .countdown-box {
+        font-size: 1.4rem;
+      }
+
+      .card {
+        width: 90%;
+      }
+
+      .card-container {
+        gap: 1rem;
+      }
     }
   </style>
 </head>
-<body class="age-gated">
+<body>
+
   <div class="background"></div>
-  <div class="age-overlay" id="ageGate">
-    <div class="age-modal">
-      <h2>⚠️ 本網站內容可能不適合未成年人</h2>
-      <p>請確認您已滿 18 歲才能繼續瀏覽。</p>
-      <button class="btn btn-yes" id="confirm-age">是，我已滿 18 歲</button>
-      <button class="btn btn-no" onclick="leaveSite()">否</button>
+
+  <div class="title-wrapper">
+    <div class="title-image-wrapper">
+      <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
+      <div class="subtitle-row">
+        <span class="subline">次元壁將於</span>
+        <div class="countdown-box" id="countdown-text">3天 0時 0分 0秒</div>
+        <span class="subline">粉碎</span>
+      </div>
     </div>
   </div>
 
-  <div id="main-content">
-    <!-- 主網站內容開始 -->
-    <!-- 將 main.html 的實際內容整合於此 -->
-    <div class="title-wrapper">
-      <div class="title-image-wrapper">
-        <img src="assets/2.png" alt="番號動畫化企劃" class="title-image" />
-        <div class="subtitle-row">
-          <span class="subline">次元壁將於</span>
-          <div class="countdown-box" id="countdown-text">3天 0時 0分 0秒</div>
-          <span class="subline">粉碎</span>
-        </div>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/MD-0345.jpg" alt="MD-0345" />
       </div>
+      <div class="card-info">
+        <div class="meta">MD-0345｜主演：露露、沈娜娜</div>
+        <div class="title">父喪姐妹的原罪</div>
+      </div>
+      <a href="https://modelmediaaisa.pse.is/7buxbd" target="_blank" class="btn">點我解鎖番號</a>
     </div>
 
-    <div class="card-container">
-      <div class="card">
-        <div class="card-img">
-          <img src="assets/MD-0345.jpg" alt="MD-0345" />
-        </div>
-        <div class="card-info">
-          <div class="meta">MD-0345｜主演：露露、沈娜娜</div>
-          <div class="title">父喪姐妹的原罪</div>
-        </div>
-        <a href="https://modelmediaaisa.pse.is/7buxbd" target="_blank" class="btn">點我解鎖番號</a>
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/MDCM-0015.jpg" alt="MDCM-0015" />
       </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="assets/MDCM-0015.jpg" alt="MDCM-0015" />
-        </div>
-        <div class="card-info">
-          <div class="meta">MDCM-0015｜經典改編</div>
-          <div class="title">哪吒之三龍女大戰真陽魔童</div>
-        </div>
-        <a href="https://modelmediaaisa.pse.is/7aq6zs" target="_blank" class="btn">點我解鎖番號</a>
+      <div class="card-info">
+        <div class="meta">MDCM-0015｜經典改編</div>
+        <div class="title">哪吒之三龍女大戰真陽魔童</div>
       </div>
-
-      <div class="card">
-        <div class="card-img">
-          <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3" />
-        </div>
-        <div class="card-info">
-          <div class="meta">MD-0180-3｜病弱母女受難記</div>
-          <div class="title">夜勤病棟</div>
-        </div>
-        <a href="https://modelmediaaisa.pse.is/79h7ac" target="_blank" class="btn">點我解鎖番號</a>
-      </div>
+      <a href="https://modelmediaaisa.pse.is/7aq6zs" target="_blank" class="btn">點我解鎖番號</a>
     </div>
 
-    <div class="main-cta">
-      <a href="#" class="btn" onclick="confirmWife(event)">❤️ 立即預約老婆 ❤️</a>
+    <div class="card">
+      <div class="card-img">
+        <img src="assets/MD-0180-3.jpeg" alt="MD-0180-3" />
+      </div>
+      <div class="card-info">
+        <div class="meta">MD-0180-3｜病弱母女受難記</div>
+        <div class="title">夜勤病棟</div>
+      </div>
+      <a href="https://modelmediaaisa.pse.is/79h7ac" target="_blank" class="btn">點我解鎖番號</a>
     </div>
-
-    <div class="footer-hint">4月1日 企劃全面開啟</div>
-    <!-- 主網站內容結束 -->
   </div>
+
+  <div class="main-cta">
+    <a href="#" class="btn">❤️ 立即預約老婆 ❤️</a>
+  </div>
+
+  <div class="footer-hint">4月1日 企劃全面開啟</div>
 
   <script>
-    document.getElementById('confirm-age').addEventListener('click', function () {
-      document.getElementById('ageGate').classList.add('hidden');
-      document.body.classList.remove('age-gated');
-    });
-
-    function leaveSite() {
-      window.location.href = 'https://www.google.com';
-    }
-
-    function confirmWife(event) {
-      event.preventDefault();
-      const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
-      if (confirmed) {
-        window.location.href = "https://modelmediaasia.com/zh-CN/posts/27";
-      }
-    }
-
     const targetDate = new Date("2025-04-01T00:00:00").getTime();
     const countdownBox = document.getElementById("countdown-text");
 
@@ -205,8 +269,18 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdownBox.textContent = `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
+      countdownBox.textContent = ${days}天 ${hours}時 ${minutes}分 ${seconds}秒;
     }, 1000);
+
+    document.querySelector('.main-cta .btn').addEventListener('click', function(event) {
+      event.preventDefault();
+      const confirmed = confirm("你確定要預約老婆嗎？這條路一旦踏上，就回不了頭了。");
+      if (confirmed) {
+        window.location.href = "https://modelmediaasia.com/zh-CN/posts/27";
+      }
+    });
   </script>
 </body>
 </html>
+
+
